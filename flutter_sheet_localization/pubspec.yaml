@@ -9,5 +9,4 @@ environment:
 
 dependencies:
   intl: ^0.18.0
-  template_string:
-    path: ../template_string
+  template_string: ^0.7.0
