@@ -27,7 +27,7 @@ dependencies:
   build: ^2.0.0
   analyzer: ^5.13.0
   collection: ^1.17.1
-  intl: ^0.18.1
+  intl: ^0.18.0
   localization_builder:
     git:
       url: https://github.com/mboe/flutter_sheet_localization.git
