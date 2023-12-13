@@ -1,10 +1,10 @@
 name: flutter_sheet_localization_generator
 description: Flutter localizations code generator from Google sheet files.
-version: 6.0.2
+version: 6.0.4
 homepage: https://github.com/mboe/flutter_sheet_localization
 
 environment:
-  sdk: ">=3.2.0 <4.0.0"
+  sdk: ">=3.0.0 <4.0.0"
 
 dependencies:
   flutter:
@@ -29,7 +29,7 @@ dependencies:
   build: ^2.0.0
   analyzer: ^6.2.0
   collection: ^1.17.1
-  intl: ^0.19.0
+  intl: ^0.18.0
   localization_builder:
     # path: ../localization_builder
     git:
