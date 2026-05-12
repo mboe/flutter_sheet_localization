@@ -4,11 +4,9 @@ class Localizations extends Section {
   Localizations({
     required this.name,
     required this.supportedLanguageCodes,
-    required List<Label> labels,
-    required List<Section> children,
+    required super.labels,
+    required super.children,
   }) : super(
-          children: children,
-          labels: labels,
           key: '',
         );
 

@@ -60,7 +60,7 @@ class DataClassBuilder {
   }) {
     final propertyNames = _properties.keys.toList();
 
-    final buffer = StringBuffer('class $name \{\n');
+    final buffer = StringBuffer('class $name {\n');
 
     if (isConst) {
       // Default constructor
@@ -273,7 +273,7 @@ class DataClassBuilder {
       for (var constructor in _constructors.entries) {
         buffer.writeln();
         buffer.writeln(
-            'class _$name${createClassdName(constructor.key)} extends $name \{\n');
+            'class _$name${createClassdName(constructor.key)} extends $name {\n');
 
         buffer.writeln(
             '  const _$name${createClassdName(constructor.key)}() : super._();');

@@ -36,7 +36,9 @@ import 'package:template_string/template_string.dart';
       ],
       localizations,
     );
-    localizations.categories.forEach((c) => _addCategoryDefinition(c));
+    for (var c in localizations.categories) {
+      _addCategoryDefinition(c);
+    }
     _addSectionDefinition(
       [
         localizations.name,
@@ -58,7 +60,7 @@ import 'package:template_string/template_string.dart';
 
     for (var languageCode in localizations.supportedLanguageCodes) {
       final instance =
-          _createSectionInstance(path, languageCode, localizations);
+          _createSectionInstance(path, languageCode, localizations, isRoot: true);
 
       final splits = languageCode.split(RegExp(r'[-_]'));
 
@@ -70,7 +72,7 @@ import 'package:template_string/template_string.dart';
         key += ', countryCode: \'${splits[1]}\'';
       }
       key += ')';
-      result.write(key + ' : ' + instance + ',');
+      result.write('$key : $instance,');
     }
 
     result.write('}');
@@ -81,15 +83,17 @@ import 'package:template_string/template_string.dart';
   String _createSectionInstance(
     List<String> path,
     String languageCode,
-    Section section,
-  ) {
+    Section section, {
+    bool isRoot = false,
+  }) {
     path = [
       ...path,
       section.normalizedKey,
     ];
 
     final result = StringBuffer();
-    result.writeln('const ${_buildClassNameFromPath(path)}(');
+    final prefix = isRoot ? 'const ' : '';
+    result.writeln('$prefix${_buildClassNameFromPath(path)}(');
 
     for (var label in section.labels) {
       for (var caze in label.cases) {
@@ -99,8 +103,7 @@ import 'package:template_string/template_string.dart';
               '${label.normalizedKey}${createClassdName(condition.value)}';
           result.write(fieldName);
         } else {
-          final fieldName = '${label.normalizedKey}';
-          result.write(fieldName);
+          result.write(label.normalizedKey);
         }
         final translation = caze.translations.firstWhere(
           (x) => x.languageCode == languageCode,
@@ -128,7 +131,7 @@ import 'package:template_string/template_string.dart';
   }
 
   void _addCategoryDefinition(Category category) {
-    final values = category.values.map((x) => x + ',').join();
+    final values = category.values.map((x) => '$x,').join();
     _buffer.writeln('enum ${category.normalizedName} { $values }');
   }
 

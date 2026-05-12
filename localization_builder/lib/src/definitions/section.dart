@@ -9,10 +9,10 @@ import 'translation.dart';
 /// easier to find.
 class Section extends Equatable {
   const Section({
-    required String key,
+    required this.key,
     required this.labels,
     required this.children,
-  }) : key = key;
+  });
 
   /// Merges [value] and [other] into a new [Section] with combined [labels] and merged [children].
   factory Section.merge(Section value, Section other) {
@@ -67,7 +67,7 @@ class Section extends Equatable {
     );
 
     Logger.root.finer(
-        '[{SECTION} Merging]:\n\n\tITEM1===================================\n$value\n\n\tITEM2===================================\n$other\n\n\tRESULT===================================:\:\n$result\n\n');
+        '[{SECTION} Merging]:\n\n\tITEM1===================================\n$value\n\n\tITEM2===================================\n$other\n\n\tRESULT===================================::\n$result\n\n');
 
     return result;
   }

@@ -21,7 +21,7 @@ class YamlLocalizationParser
     required YamlNode input,
     required String name,
   }) {
-    if (!(input is YamlMap)) {
+    if (input is! YamlMap) {
       throw ParsingException<YamlLocalizationToken>(
         message: '[input] should be a YamlMap',
         token: YamlLocalizationToken.unknown(input),
@@ -38,7 +38,7 @@ class YamlLocalizationParser
         YamlLocalizationTokenType.languageKey,
         languageEntry.key,
       );
-      if (!(languageEntry.value is YamlMap)) {
+      if (languageEntry.value is! YamlMap) {
         throw ParsingException<YamlLocalizationToken>(
           message: '[${languageEntry.key}] should be a YamlMap',
           token: YamlLocalizationToken.unknown(languageEntry.value),
@@ -108,7 +108,7 @@ class YamlLocalizationParser
 
           final caseNodes = value.nodes['cases'];
 
-          if (!(caseNodes is YamlMap)) {
+          if (caseNodes is! YamlMap) {
             throw ParsingException<YamlLocalizationToken>(
               message: '[cases] should be a YamlMap',
               token: YamlLocalizationToken.unknown(caseNodes),
@@ -163,7 +163,7 @@ class YamlLocalizationParser
           );
           final sectionKey = sectionEntry.key.toString();
 
-          if (!(sectionEntry.value is YamlMap)) {
+          if (sectionEntry.value is! YamlMap) {
             throw ParsingException<YamlLocalizationToken>(
               message: '[$sectionKey] should be a YamlMap',
               token: YamlLocalizationToken.unknown(sectionEntry.value),

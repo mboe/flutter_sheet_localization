@@ -58,7 +58,7 @@ class StringTemplate {
   }
 
   @override
-  bool operator ==(Object o) => o is StringTemplate && o.key == key;
+  bool operator ==(Object other) => other is StringTemplate && other.key == key;
 
   @override
   int get hashCode => key.hashCode;

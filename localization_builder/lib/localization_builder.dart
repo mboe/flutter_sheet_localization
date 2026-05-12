@@ -1,5 +1,3 @@
-library localization_builder;
-
 export 'src/definitions/case.dart';
 export 'src/definitions/category.dart';
 export 'src/definitions/condition.dart';

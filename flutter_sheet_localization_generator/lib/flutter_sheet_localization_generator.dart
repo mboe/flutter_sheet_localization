@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:convert';
 
 import 'package:analyzer/dart/element/element.dart';
 import 'package:csv/csv.dart';
@@ -69,14 +68,8 @@ class SheetLocalizationGenerator
 
     log.fine('Google sheet csv:\n ${response.body}');
 
-    final bytes = response.bodyBytes.toList();
-    final csv = Stream<List<int>>.fromIterable([bytes]);
-    final rows = await csv
-        .transform(utf8.decoder)
-        .transform(CsvToListConverter(
-          shouldParseNumbers: false,
-        ))
-        .toList();
+    final csv = Csv(dynamicTyping: false);
+    final rows = csv.decode(response.body);
     final parser = CsvLocalizationParser();
     final result = parser.parse(input: rows, name: name);
     return result.result;

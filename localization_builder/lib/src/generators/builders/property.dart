@@ -15,7 +15,7 @@ class PropertyBuilder {
   final String? defaultValue;
   final PropertyBuilderJsonConverter _jsonConverter;
   String get fieldName => '${isPrivate ? '_' : ''}$argumentName';
-  String get argumentName => '${createFieldName(name)}';
+  String get argumentName => createFieldName(name);
 
   String jsonConverter(String value) => _jsonConverter(this, value);
 
@@ -58,7 +58,7 @@ String defaultPropertyBuilderJsonConverter(
   } else if (property.type == 'DateTime') {
     return 'DateTime.parse($value as String)';
   } else {
-    return '$value';
+    return value;
   }
 }
 
